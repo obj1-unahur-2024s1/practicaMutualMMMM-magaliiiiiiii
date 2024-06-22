@@ -1,0 +1,52 @@
+import actividades.*
+
+
+
+describe "probando Parte de Actividades "{
+	
+	
+	
+	test "una excursión a ciudad 
+normal (no tropical) en la que se 
+visitan 4 atracciones, lleva 2 días, 
+no implica esfuerzo, 
+y no sirve para broncearse." {
+const excusionALaCiudad= new ExcursionALaciudad(cantidadDeAtrraccionesPorVisitar=4)
+	assert.equals(2, excusionALaCiudad.cantidadDeDiasPorActividad())
+	assert.notThat(excusionALaCiudad.implicaEsfuerzo())
+	assert.notThat(excusionALaCiudad.sirveParaBroncearse())
+
+}
+test"una excursión a ciudad tropical en la que se 
+visitan 4 atracciones, lleva 3 días, 
+no implica esfuerzo, y sí sirve para 
+broncearse."{
+	const excursionTropical=new ExcursionTropical(cantidadDeAtrraccionesPorVisitar=4)
+	
+	assert.equals(3, excursionTropical.cantidadDeDiasPorActividad())
+	assert.notThat(excursionTropical.implicaEsfuerzo())
+	assert.that(excursionTropical.sirveParaBroncearse())
+}
+test"una excursión a ciudad normal (no tropical) en la que se visitan 8 atracciones, 
+lleva 4 días, implica esfuerzo, 
+y no sirve para broncearse."{
+	const excusionALaCiudad= new ExcursionALaciudad(cantidadDeAtrraccionesPorVisitar=8)
+	assert.equals(4, excusionALaCiudad.cantidadDeDiasPorActividad())
+	assert.notThat(excusionALaCiudad.sirveParaBroncearse())
+}
+test "una excursión a ciudad tropical en la que se visitan 8 atracciones, 
+lleva 5 días, implica esfuerzo, 
+y sirve para broncearse."{
+	const excursionTropical=new ExcursionTropical(cantidadDeAtrraccionesPorVisitar=8)
+	assert.equals(5, excursionTropical.cantidadDeDiasPorActividad())
+	assert.that(excursionTropical.implicaEsfuerzo())
+}	
+test"una excursión a ciudad tropical en la que se visitan 10 atracciones, 
+lleva 6 días, no implica esfuerzo, 
+y sí sirve para broncearse."{
+	const excursionTropical=new ExcursionTropical(cantidadDeAtrraccionesPorVisitar=10)
+	assert.equals(6, excursionTropical.cantidadDeDiasPorActividad())
+	assert.notThat(excursionTropical.implicaEsfuerzo())
+	assert.that(excursionTropical.sirveParaBroncearse())
+}
+}
