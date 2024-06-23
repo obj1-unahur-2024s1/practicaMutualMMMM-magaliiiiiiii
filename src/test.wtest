@@ -49,4 +49,28 @@ y sí sirve para broncearse."{
 	assert.notThat(excursionTropical.implicaEsfuerzo())
 	assert.that(excursionTropical.sirveParaBroncearse())
 }
+test "una salida de 100 kilómetros a un lugar con 130 días de sol por año: lleva 2 días, 
+implica esfuerzo, y no sirve para broncearse."{
+	
+	const salida= new SalidaDeTrekking(kmDeSendero=100, cantidadDeDiasDeSOL=130)
+	assert.that(salida.implicaEsfuerzo())
+	assert.notThat(salida.sirveParaBroncearse())   
+	assert.equals(2, salida.cantidadDeDiasPorActividad())
+}
+test "una salida de 50 kilómetros a un lugar con 240 días de sol por año: lleva 1 día, 
+no implica esfuerzo, y sí sirve para broncearse"{
+	
+	const salida= new SalidaDeTrekking(kmDeSendero=50, cantidadDeDiasDeSOL=240)
+	assert.notThat(salida.implicaEsfuerzo())
+	assert.that(salida.sirveParaBroncearse())   
+	assert.equals(1, salida.cantidadDeDiasPorActividad())
+}
+test"una salida de 250 kilómetros a un lugar con 130 días de sol por año: lleva 5 días, 
+implica esfuerzo, y sirve para broncearse."{
+	const salida= new SalidaDeTrekking(kmDeSendero=250, cantidadDeDiasDeSOL=130)
+	assert.that(salida.implicaEsfuerzo())
+	assert.that(salida.sirveParaBroncearse())   
+	assert.equals(5, salida.cantidadDeDiasPorActividad())
+}
+
 }

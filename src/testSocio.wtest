@@ -1,0 +1,42 @@
+import socio.*
+import actividades.*
+describe"test parte Socio"{
+	
+	test " Roque, un socio que hizo 2 viajes a la playa, 
+con longitudes de 1000 y 2000 metros 
+respectivamente, y que tiene un máximo 
+de 2 actividades."{
+	const playa1= new ViajeDePlaya(largo=1000, idiomas=#{"Español", "ingles "})
+	const playa2= new ViajeDePlaya(largo=2000,idiomas=#{"Español", "portugues", "ingles", "chino"})
+	const gym= new Gimnasia()
+	const roque= new Relajado(edad=30, listaDeActividadesParaRealizar=[playa1,playa2], cantidadMaximaDeActividades=2, idiomasQueHabla=#{"Español", "quechua"})
+	
+	assert.that(roque.esAdoradorDelSol())
+	assert.equals([playa2], roque.actividadesEsforzadas())
+	assert.notThat(roque.registrarUnaACtividad(gym))
+
+} test "Ana la socia"{
+	const playa1= new ViajeDePlaya(largo=1000, idiomas=#{"Español", "ingles "})
+	const playa2= new ViajeDePlaya(largo=2000,idiomas=#{"Español", "portugues", "ingles", "chino"})
+	const gym= new Gimnasia()
+	const ana= new Coherente(edad=30, listaDeActividadesParaRealizar=[playa1,gym,playa2], cantidadMaximaDeActividades=3)
+
+	assert.notThat(ana.esAdoradorDelSol())
+	assert.equals([gym,playa2], ana.actividadesEsforzadas())
+	
+
+}
+test"si un socio relajado habla español y quechua, 
+entonces una actividad en español le va a atraer, una en quechua y aymará también, una en francés e italiano no.
+"{
+	const playa1= new ViajeDePlaya(largo=1000, idiomas=#{"quechua", "aymara"})
+	const salida= new SalidaDeTrekking(kmDeSendero=100,cantidadDeDiasDeSOL=130,idiomas=#{"Español", "quechua"})
+	const excursion= new ExcursionALaciudad(cantidadDeAtrraccionesPorVisitar=3,idiomas=#{"frances", "italiano"} )
+	const roque= new Relajado(edad=30, listaDeActividadesParaRealizar=[playa1,salida, excursion], cantidadMaximaDeActividades=2, idiomasQueHabla=#{"Español", "quechua"})
+
+	assert.that(roque.esAtrayenteLaAct(playa1))
+	assert.that(roque.esAtrayenteLaAct(salida))
+	assert.notThat(roque.esAtrayenteLaAct(excursion))
+	
+}
+}
